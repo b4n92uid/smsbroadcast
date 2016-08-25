@@ -1,30 +1,61 @@
 package com.starfeel.smsbroadcast;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Abdelghani on 23/08/2016.
  */
-public class LogAdapter extends ArrayAdapter<Log> {
+public class LogAdapter extends ArrayAdapter<LogItem> {
 
-    public LogAdapter(Context context, ArrayList<Log> logs) {
-        super(context, 0, logs);
+    public LogAdapter(Context context, ArrayList<LogItem> logItems) {
+        super(context, 0, logItems);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log l = getItem(position);
+        LogItem l = getItem(position);
 
-        TextView originView = (TextView) convertView.findViewById(R.id.originView);
+        if(convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.log_item, parent, false);
+        }
+
+        TextView tagView = (TextView) convertView.findViewById(R.id.tagView);
         TextView dateView = (TextView) convertView.findViewById(R.id.dateView);
-        TextView statusView = (TextView) convertView.findViewById(R.id.statusView);
+        TextView messageView = (TextView) convertView.findViewById(R.id.messageView);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 
-        originView.setText(l.getOrigin());
+        // TODO: Correct date format
+        DateFormat df = new SimpleDateFormat("dd/MM HH:mm");
+
+        tagView.setText(l.getSubtag());
+        dateView.setText(df.format(l.getDate()));
+        messageView.setText(l.getMessage());
+
+        if(l.getLevel().equals("E")) {
+            if(l.getSubtag().equals(ServerTask.APPTAG_SERVER_ERR))
+                imageView.setImageResource(R.drawable.ic_action_halt);
+            else
+                imageView.setImageResource(R.drawable.ic_action_warning);
+        }
+
+        else if(l.getLevel().equals("I")) {
+            if(l.getSubtag().equals(ServerTask.APPTAG_SERVER_OK))
+                imageView.setImageResource(R.drawable.ic_action_tick);
+            else
+                imageView.setImageResource(R.drawable.ic_action_info);
+        }
+
+        return convertView;
     }
 }

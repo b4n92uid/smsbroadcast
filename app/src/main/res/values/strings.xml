@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SMSBroadcast</string>
+    <string name="clear_log">Effacer les logs</string>
 </resources>
