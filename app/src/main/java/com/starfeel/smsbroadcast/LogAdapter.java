@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Abdelghani on 23/08/2016.
@@ -38,19 +37,19 @@ public class LogAdapter extends ArrayAdapter<LogItem> {
         // TODO: Correct date format
         DateFormat df = new SimpleDateFormat("dd/MM HH:mm");
 
-        tagView.setText(l.getSubtag());
+        tagView.setText(l.getTag());
         dateView.setText(df.format(l.getDate()));
         messageView.setText(l.getMessage());
 
         if(l.getLevel().equals("E")) {
-            if(l.getSubtag().equals(ServerTask.APPTAG_SERVER_ERR))
+            if(l.getTag().equals(MainActivity.APPTAG_SERVER_ERR))
                 imageView.setImageResource(R.drawable.ic_action_halt);
             else
                 imageView.setImageResource(R.drawable.ic_action_warning);
         }
 
         else if(l.getLevel().equals("I")) {
-            if(l.getSubtag().equals(ServerTask.APPTAG_SERVER_OK))
+            if(l.getTag().equals(MainActivity.APPTAG_SERVER_OK))
                 imageView.setImageResource(R.drawable.ic_action_tick);
             else
                 imageView.setImageResource(R.drawable.ic_action_info);

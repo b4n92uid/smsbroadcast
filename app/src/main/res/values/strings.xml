@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SMSBroadcast</string>
     <string name="clear_log">Effacer les logs</string>
+    <string name="export_log">Exporter les logs</string>
 </resources>

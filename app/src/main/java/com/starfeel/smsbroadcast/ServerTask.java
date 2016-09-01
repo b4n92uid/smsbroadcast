@@ -17,8 +17,6 @@ import java.net.URL;
  */
 public class ServerTask extends AsyncTask<SmsMessage, Void, Boolean>
 {
-    static public final String APPTAG_SERVER_OK = MainActivity.APPTAG+".SERVER.OK";
-    static public final String APPTAG_SERVER_ERR = MainActivity.APPTAG+".SERVER.ERR";
 
     public void writePostData(OutputStream stream, String m, String o, long t) {
 
@@ -58,9 +56,9 @@ public class ServerTask extends AsyncTask<SmsMessage, Void, Boolean>
             int httpCode = connection.getResponseCode();
 
             if(httpCode == HttpURLConnection.HTTP_OK)
-                Log.i(APPTAG_SERVER_OK, "Server record successfully");
+                Log.i(MainActivity.APPTAG_SERVER_OK, "Server record successfully");
             else
-                Log.e(APPTAG_SERVER_ERR, "Server record failed");
+                Log.e(MainActivity.APPTAG_SERVER_ERR, "Server record failed");
 
             connection.disconnect();
 

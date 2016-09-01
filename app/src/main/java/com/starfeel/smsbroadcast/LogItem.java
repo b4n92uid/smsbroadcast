@@ -8,13 +8,13 @@ import java.util.Date;
 public class LogItem {
 
     private Date date;
-    private String subtag;
+    private String tag;
     private String level;
     private String message;
 
     LogItem(Date d, String t, String l, String m) {
         setDate(d);
-        setSubtag(t);
+        setTag(t);
         setLevel(l);
         setMessage(m);
     }
@@ -43,11 +43,11 @@ public class LogItem {
         this.level = level;
     }
 
-    public String getSubtag() {
-        return subtag;
+    public String getTag() {
+        return tag;
     }
 
-    public void setSubtag(String subtag) {
-        this.subtag = subtag;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }
